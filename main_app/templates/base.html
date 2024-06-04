@@ -17,7 +17,21 @@
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          {% if user.is_authenticated %}
+          <li>
+            <a href="#">
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="submit-link">Log Out</button>
+              </form>
+            </a>
+          </li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+        </ul>
       </div>
     </nav>
   </header>
