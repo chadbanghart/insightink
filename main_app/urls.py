@@ -7,4 +7,7 @@ urlpatterns = [
   path('journals/', views.journals_index, name='journals_index'),
   path('journals/create/', views.journals_create, name='journals_create'),
   path('journals/<int:pk>/update', views.JournalUpdate.as_view(), name='journals_update'),
+  path('journals/<int:pk>/delete', views.JournalDelete.as_view(), name='journals_delete'),
+  path('journals/<int:journal_id>/', views.journals_detail, name='detail'),
+  path('journals/<int:journal_id>/add_entry', views.add_entry, name='add_entry'),
 ]
