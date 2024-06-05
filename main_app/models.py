@@ -17,5 +17,7 @@ class Journal(models.Model):
 	choices=TEMPLATES,
 	default=TEMPLATES[0][0]
 )
-
   user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"{self.get_template_display()}"
