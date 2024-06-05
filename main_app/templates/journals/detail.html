@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Journal Detail Page</h1>
+{% if journal.has_entries %}
+{% for entry in entries %}
+<div class="card">
+
+  <div class="card-content">
+    <h3>
+      Entry Title: {{entry.title}}
+    </h3>
+    <p>
+      Date: {{entry.date}}
+    </p>
+    <p>
+      Content: {{entry.body}}
+    </p>
+    <p>
+      Mood: {{entry.mood_tracker}}
+    </p>
+    <p>
+      Notes: {{entry.notes}}
+    </p>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="card-panel red-text center-align">{{journal.name}} had no entries</div>
+{% endif %}
+
+<div>
+  <a href="{% url 'add_entry' journal.id %}">Add Entry</a>
+</div>
+
+{% endblock %}
