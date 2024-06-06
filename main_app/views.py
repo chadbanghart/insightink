@@ -39,7 +39,8 @@ def home(request):
 
 def journals_index(request):
   journals = Journal.objects.filter(user=request.user)
-  return render(request, 'journals/index.html', { 'journals': journals })
+  user = request.user
+  return render(request, 'journals/index.html', { 'journals': journals, 'user': user })
 
 
 @login_required
@@ -64,6 +65,7 @@ class JournalUpdate(LoginRequiredMixin, UpdateView):
   model = Journal
   fields = ['name']
 
+
 class JournalDelete(LoginRequiredMixin, DeleteView):
   model = Journal
   success_url = '/journals'
@@ -83,6 +85,7 @@ def journals_detail(request, journal_id):
     'entries': entries,
   })
 
+
 @login_required
 def add_entry(request, journal_id):
   error_message = ''
@@ -99,3 +102,13 @@ def add_entry(request, journal_id):
     'entry_form': entry_form,
     'error_message': error_message
   })
+
+
+class EntryUpdate(LoginRequiredMixin, UpdateView):
+  model = Entry
+  fields = ['title', 'date', 'body', 'mood_tracker']
+
+
+class EntryDelete(LoginRequiredMixin, DeleteView):
+  model = Entry
+  success_url = '/journals'
