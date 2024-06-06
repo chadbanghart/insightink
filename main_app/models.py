@@ -82,3 +82,6 @@ class Travel(models.Model):
 
   def __str__(self):
     return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , '{self.title}'"
+  
+  def weather_display(self):
+    return self.get_weather_display()
