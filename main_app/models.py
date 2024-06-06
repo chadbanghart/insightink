@@ -42,6 +42,9 @@ class Journal(models.Model):
   
   def has_no_entries(self):
     return self.entry_set.count() == 0
+  
+  def is_travel(self):
+    return self.template == 'T'
 
 
 

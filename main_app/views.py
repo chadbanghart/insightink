@@ -74,11 +74,20 @@ class JournalDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def journals_detail(request, journal_id):
   journal = Journal.objects.get(id=journal_id)
-  if journal.has_no_entries():
+  if journal.is_travel():
+    print('travel')
+    travels = journal.travel_set.all()
+    return render(request, 'journals/detail.html', {
+    'journal': journal,
+    'travels': travels
+  })
+  elif journal.has_no_entries():
+    print('no entries')
     return render(request, 'journals/detail.html', {
     'journal': journal,
   })
   elif journal.has_entries():
+    print('entries')
     entries = journal.entry_set.all()
     return render(request, 'journals/detail.html', {
     'journal': journal,
