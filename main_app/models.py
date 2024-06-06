@@ -21,7 +21,7 @@ class Journal(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
-    return f"{self.get_template_display()} {self.name} {self.id}"
+    return f"journal.id: {self.id}, user {self.user.id}: {self.user},  name: '{self.name}', template: {self.get_template_display()}"
   
   def get_absolute_url(self):
     return reverse('journals_index')
@@ -32,6 +32,8 @@ class Journal(models.Model):
   def has_no_entries(self):
     return self.entry_set.count() == 0
 
+
+
 class Entry(models.Model):
   title = models.CharField(max_length=50)
   date = models.DateField()
@@ -41,4 +43,7 @@ class Entry(models.Model):
   journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
 
   def __str__(self):
-    return f'{self.title}'
+    return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , '{self.title}'"
+  
+  def get_absolute_url(self):
+    return reverse('detail', kwargs={'journal_id': self.journal_id})

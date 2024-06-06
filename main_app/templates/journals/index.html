@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Journals Index</h1>
-
-{% for journal in journals %}
-
-<div class="card">
-  <div class="card-content">
-    <a href="{% url 'detail' journal.id %}">
-      <span class="card-title">{{ journal.name }}</span>
-      <p>Journal Type: {{ journal.get_template_display }}</p>
-    </a>
-    <div class="card-action">
-      <a href="{% url 'journals_update' journal.id %}">Edit</a>
-      <a href="{% url 'journals_delete' journal.id %}">Delete</a>
-    </div>
-  </div>
+<h1>{{user}}'s Journals</h1>
+<div class="row">
+    {% for journal in journals %}
+        <div class="col s4">
+            <div class="card">
+                <div class="card-content">
+                    <a href="{% url 'detail' journal.id %}">
+                        <span class="card-title">{{ journal.name }}</span>
+                        <p>Journal Type: {{ journal.get_template_display }}</p>
+                    </a>
+                    <div class="card-action">
+                        <a href="{% url 'journals_update' journal.id %}">Edit</a>
+                        <a href="{% url 'journals_delete' journal.id %}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
-
-{% endfor %}
 
 {% endblock %}
