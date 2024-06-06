@@ -112,3 +112,9 @@ class EntryUpdate(LoginRequiredMixin, UpdateView):
 class EntryDelete(LoginRequiredMixin, DeleteView):
   model = Entry
   success_url = '/journals'
+
+def entry_detail(request, entry_id):
+  entry = Entry.objects.get(id=entry_id)
+  return render(request, 'entry/detail.html', {
+    'entry': entry
+  })

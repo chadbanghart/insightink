@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Entry Title: {{ entry.title }}
+  <span class="right">
+    <a href="" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+  </span>
+</h1>
+
+<div class="card">
+  <div class="card-content">
+    <p> Date: {{entry.date}} </p>
+    <p> Content: {{entry.body}} </p>
+    <p> Mood: {{entry.mood_tracker}}</p>
+    <p>Notes: {{entry.notes}}</p>
+    <div class="card-action">
+      <a href="{% url 'entry_update' entry.id %}">Edit</a>
+      <a href="{% url 'entry_delete' entry.id %}">Delete</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
