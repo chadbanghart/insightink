@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 TEMPLATES = (
   ('P', 'Personal'),
@@ -9,6 +10,16 @@ TEMPLATES = (
   ('H', 'Wellness'),
   ('W', 'Work'),
 )
+
+WEATHER_TYPES = (
+('S', 'Sunny ☀️'),
+('C', 'Cloudy ☁️'),
+('R', 'Rainy 🌧️'),
+('T', 'Thunderstorm ⛈️'),
+('N', 'Snowy ❄️'),
+('W', 'Windy 🌬️'),
+('F', 'Foggy 🌫️'),
+) 
 
 # Create your models here.
 class Journal(models.Model):
@@ -47,3 +58,24 @@ class Entry(models.Model):
   
   def get_absolute_url(self):
     return reverse('detail', kwargs={'journal_id': self.journal_id})
+  
+
+class Travel(models.Model):
+  title = models.CharField(max_length=50)
+  date = models.DateField()
+  body = models.CharField(max_length=1000)
+  notes = models.CharField(max_length=300)
+  mood_tracker = models.CharField(max_length=25)
+  location = models.CharField(max_length=50)
+  food = models.CharField(max_length=50)
+  weather = models.CharField(
+	max_length=1,
+	choices=WEATHER_TYPES,
+	default=WEATHER_TYPES[0][0]
+)
+  created_at = models.DateField(default=timezone.now)
+  updated_at = models.DateTimeField(auto_now=True)
+  journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , '{self.title}'"
