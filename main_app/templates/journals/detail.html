@@ -1,31 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Journal: {{ journal.name }} 
+<h1>Journal: {{ journal.name }}
   <span class="right">
-    <a href="{% url 'add_entry' journal.id %}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+    <a href="{% url 'add_entry' journal.id %}" class="btn-floating btn-large waves-effect waves-light red"><i
+        class="material-icons">add</i></a>
   </span>
 </h1>
 
 {% if journal.has_entries %}
-  {% for entry in entries %}
-    <div class="card">
-      <div class="card-content">
-        <h3> Entry Title: {{entry.title}}</h3>
-        <p> Date: {{entry.date}} </p>
-        <p> Content: {{entry.body}} </p>
-        <p> Mood: {{entry.mood_tracker}}</p>
-        <p>Notes: {{entry.notes}}</p>
-        <div class="card-action">
-          <a href="{% url 'entry_update' entry.id %}">Edit</a>
-          <a href="{% url 'entry_delete' entry.id %}">Delete</a>
-      </div>
-      </div>
+{% for entry in entries %}
+<div class="card">
+  <div class="card-content">
+    <a href="{% url  'entry_detail' entry.id %}">
+      <h3> Entry Title: {{entry.title}}</h3>
+      <p> Date: {{entry.date}} </p>
+      <p> Content: {{entry.body}} </p>
+      <p> Mood: {{entry.mood_tracker}}</p>
+      <p>Notes: {{entry.notes}}</p>
+    </a>
+    <div class="card-action">
+      <a href="{% url 'entry_update' entry.id %}">Edit</a>
+      <a href="{% url 'entry_delete' entry.id %}">Delete</a>
     </div>
-  {% endfor %}
+  </div>
+</div>
+{% endfor %}
 
 {% else %}
-  <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
+<div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 {% endif %}
 
 

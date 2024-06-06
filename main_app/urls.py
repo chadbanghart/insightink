@@ -12,4 +12,6 @@ urlpatterns = [
   path('journals/<int:journal_id>/add_entry/', views.add_entry, name='add_entry'),
   path('entries/<int:pk>/update/', views.EntryUpdate.as_view(), name='entry_update'),
   path('entries/<int:pk>/delete/', views.EntryDelete.as_view(), name='entry_delete'),
+  path('entries/<int:entry_id>/', views.entry_detail, name='entry_detail'),
 ]
+

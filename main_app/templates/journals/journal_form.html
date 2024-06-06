@@ -4,11 +4,11 @@
 <h1>Create a Journal</h1>
 <!-- Leaving the action empty makes the form post to the same url used to display it -->
 <form action="" method="POST">
-    {% csrf_token %}
-    <table>
-      {{ journal_form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
+  {% csrf_token %}
+  <table>
+    {{ journal_form.as_table }}
+  </table>
+  <input type="submit" value="Submit!" class="btn">
 </form>
 
 <script>
