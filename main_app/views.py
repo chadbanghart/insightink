@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Journal, Entry
-from .forms import JournalForm, EntryForm
+from .forms import JournalForm, EntryForm, TravelForm
 
 # Create your views here.
 # @login_required -> auth decorator for view functions
@@ -74,11 +74,20 @@ class JournalDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def journals_detail(request, journal_id):
   journal = Journal.objects.get(id=journal_id)
-  if journal.has_no_entries():
+  if journal.is_travel():
+    print('travel')
+    travels = journal.travel_set.all()
+    return render(request, 'journals/detail.html', {
+    'journal': journal,
+    'travels': travels
+  })
+  elif journal.has_no_entries():
+    print('no entries')
     return render(request, 'journals/detail.html', {
     'journal': journal,
   })
   elif journal.has_entries():
+    print('entries')
     entries = journal.entry_set.all()
     return render(request, 'journals/detail.html', {
     'journal': journal,
@@ -89,7 +98,11 @@ def journals_detail(request, journal_id):
 @login_required
 def add_entry(request, journal_id):
   error_message = ''
-  entry_form = EntryForm(request.POST)
+  journal = Journal.objects.get(id=journal_id)
+  if journal.is_travel():
+    entry_form = TravelForm(request.POST)
+  else:
+    entry_form = EntryForm(request.POST)
   journal = journal_id
   if entry_form.is_valid():
     new_entry = entry_form.save(commit=False)
