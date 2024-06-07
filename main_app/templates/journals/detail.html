@@ -12,43 +12,43 @@
 <p>{{journal.get_template_display}}</p>
 <!----------------------------------------------------------------->
 
-{% if journal.has_no_entries %}
-  <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
+{% if not travels and not entries %}
+<div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 
-{% elif journal.template == 'T' %}
-  {% for travel in travels %}
-  <div class="card">
-    <div class="card-content">
-      <h3>travel entry title: {{travel.title }}</h3>
-      <p> Date: {{travel.date}} </p>
-      <p> Content: {{travel.body}} </p>
-      <p> Mood: {{travel.mood_tracker}}</p>
-      <p> Location: {{travel.location}}</p>
-      <p> Food: {{travel.food}}</p>
-      <p> Weather: {{travel.weather_display}}</p>
-      <p> Notes: {{travel.notes}}</p>
-    </div>
+{% elif journal.is_travel %}
+{% for travel in travels %}
+<div class="card">
+  <div class="card-content">
+    <h3>travel entry title: {{travel.title }}</h3>
+    <p> Date: {{travel.date}} </p>
+    <p> Content: {{travel.body}} </p>
+    <p> Mood: {{travel.mood_tracker}}</p>
+    <p> Location: {{travel.location}}</p>
+    <p> Food: {{travel.food}}</p>
+    <p> Weather: {{travel.weather_display}}</p>
+    <p> Notes: {{travel.notes}}</p>
   </div>
-  {% endfor %}
+</div>
+{% endfor %}
 
 {% elif journal.has_entries %}
-  {% for entry in entries %}
-  <div class="card">
-    <div class="card-content">
-      <a href="{% url  'entry_detail' entry.id %}">
-        <h3> Entry Title: {{entry.title}}</h3>
-        <p> Date: {{entry.date}} </p>
-        <p> Content: {{entry.body}} </p>
-        <p> Mood: {{entry.mood_tracker}}</p>
-        <p>Notes: {{entry.notes}}</p>
-      </a>
-      <div class="card-action">
-        <a href="{% url 'entry_update' entry.id %}">Edit</a>
-        <a href="{% url 'entry_delete' entry.id %}">Delete</a>
-      </div>
+{% for entry in entries %}
+<div class="card">
+  <div class="card-content">
+    <a href="{% url  'entry_detail' entry.id %}">
+      <h3> Entry Title: {{entry.title}}</h3>
+      <p> Date: {{entry.date}} </p>
+      <p> Content: {{entry.body}} </p>
+      <p> Mood: {{entry.mood_tracker}}</p>
+      <p>Notes: {{entry.notes}}</p>
+    </a>
+    <div class="card-action">
+      <a href="{% url 'entry_update' entry.id %}">Edit</a>
+      <a href="{% url 'entry_delete' entry.id %}">Delete</a>
     </div>
   </div>
-  {% endfor %}
+</div>
+{% endfor %}
 
 {% endif %}
 
