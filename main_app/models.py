@@ -168,3 +168,10 @@ class Wellness(models.Model):
   
   def __str__(self):
     return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , template: {self.journal.template}, '{self.title}'"
+  
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    travel = models.ForeignKey(Travel, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for travel_id: {self.travel_id} @{self.url}"  
