@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <h1>{{user}}'s Journals</h1>
 <div class="row">
     {% for journal in journals %}
         <div class="col s4">
-            <div class="card">
+            <div class="card journal-card">
+                <div class="card-image waves-effect waves-block waves-light" >
+                    {% if journal.template == 'T' %}
+                    <img class="activator journal-image" src="{% static 'images/travel.jpg' %}">
+                    {% elif journal.template == 'P' %}
+                    <img class="activator journal-image" src="{% static 'images/personal.jpg' %}" >
+                    {% elif journal.template == 'H' %}
+                    <img class="activator journal-image" src="{% static 'images/wellness.jpg' %}">
+                    {% endif %}
+                </div>
                 <div class="card-content">
                     <a href="{% url 'detail' journal.id %}">
                         <span class="card-title">{{ journal.name }}</span>

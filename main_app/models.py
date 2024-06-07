@@ -45,6 +45,7 @@ class Journal(models.Model):
   
   def is_travel(self):
     return self.template == 'T'
+  
 
 
 
