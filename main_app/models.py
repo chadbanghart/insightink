@@ -12,14 +12,24 @@ TEMPLATES = (
 )
 
 WEATHER_TYPES = (
-('S', 'Sunny ☀️'),
-('C', 'Cloudy ☁️'),
-('R', 'Rainy 🌧️'),
-('T', 'Thunderstorm ⛈️'),
-('N', 'Snowy ❄️'),
-('W', 'Windy 🌬️'),
-('F', 'Foggy 🌫️'),
+  ('S', 'Sunny ☀️'),
+  ('C', 'Cloudy ☁️'),
+  ('R', 'Rainy 🌧️'),
+  ('T', 'Thunderstorm ⛈️'),
+  ('N', 'Snowy ❄️'),
+  ('W', 'Windy 🌬️'),
+  ('F', 'Foggy 🌫️'),
 ) 
+
+MOODS = (
+  ('H', 'Happy 😊'),
+  ('S', 'Sad 😢'),
+  ('C', 'Content 😌'),
+  ('A', 'Angry 😡'),
+  ('T', 'Tired 🥱'),
+  ('X', 'Anxious 😰'),
+  ('K', 'Sick 🤒'),
+)
 
 # Create your models here.
 class Journal(models.Model):
@@ -28,8 +38,13 @@ class Journal(models.Model):
 	max_length=1,
 	choices=TEMPLATES,
 	default=TEMPLATES[0][0]
-)
+  )
+  created_at = models.DateField(default=timezone.now)
+  updated_at = models.DateTimeField(auto_now=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+  class Meta:
+    ordering = ['-updated_at']
 
   def __str__(self):
     return f"journal.id: {self.id}, user {self.user.id}: {self.user},  name: '{self.name}', template: {self.get_template_display()}"
@@ -41,7 +56,7 @@ class Journal(models.Model):
     return self.entry_set.exists()
   
   def is_empty(self):
-    empty = not self.entry_set.exists() and not self.travel_set.exists()
+    empty = not self.entry_set.exists() and not self.travel_set.exists() and not self.wellness_set.exists()
     return empty
   
   def is_travel(self):
@@ -53,8 +68,6 @@ class Journal(models.Model):
     else:
       return self.entry_set.count() 
 
-  
-
 
 
 class Entry(models.Model):
@@ -63,7 +76,13 @@ class Entry(models.Model):
   body = models.CharField(max_length=1000)
   notes = models.CharField(max_length=300)
   mood_tracker = models.CharField(max_length=25)
+
+  created_at = models.DateField(default=timezone.now)
+  updated_at = models.DateTimeField(auto_now=True)
   journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
+
+  class Meta:
+    ordering = ['-updated_at']
 
   def __str__(self):
     return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , '{self.title}'"
@@ -85,7 +104,7 @@ class Travel(models.Model):
 	max_length=1,
 	choices=WEATHER_TYPES,
 	default=WEATHER_TYPES[0][0]
-)
+  )
   created_at = models.DateField(default=timezone.now)
   updated_at = models.DateTimeField(auto_now=True)
   journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
@@ -101,3 +120,32 @@ class Travel(models.Model):
   
   def get_absolute_url(self):
     return reverse('detail', kwargs={'journal_id': self.journal_id})
+  
+
+
+class Wellness(models.Model):
+  title = models.CharField(max_length=50)
+  date = models.DateField()
+  body = models.TextField(max_length=1000)
+  notes = models.TextField(max_length=300)
+  affirmation = models.TextField(max_length=200)
+  food = models.CharField(max_length=50)
+  sleep = models.IntegerField()
+  mood = models.CharField(
+	max_length=1,
+	choices=MOODS,
+	default=MOODS[0][0]
+  )
+
+  created_at = models.DateField(default=timezone.now)
+  updated_at = models.DateTimeField(auto_now=True)
+  journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
+
+  def mood_display(self):
+    return self.get_weather_display()
+
+  def get_absolute_url(self):
+    return reverse('detail', kwargs={'journal_id': self.journal_id})
+  
+  def __str__(self):
+    return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , template: {self.journal.template}, '{self.title}'"
