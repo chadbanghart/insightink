@@ -62,9 +62,14 @@ class Journal(models.Model):
   def is_travel(self):
     return self.template == 'T'
   
+  def is_wellness(self):
+    return self.template == 'H'
+  
   def count(self):
     if self.is_travel():
       return self.travel_set.count()
+    elif self.is_wellness():
+      return self.wellness_set.count()
     else:
       return self.entry_set.count() 
 
@@ -75,7 +80,11 @@ class Entry(models.Model):
   date = models.DateField()
   body = models.CharField(max_length=1000)
   notes = models.CharField(max_length=300)
-  mood_tracker = models.CharField(max_length=25)
+  mood = models.CharField(
+	max_length=1,
+	choices=MOODS,
+	default=MOODS[0][0]
+  )
 
   created_at = models.DateField(default=timezone.now)
   updated_at = models.DateTimeField(auto_now=True)
@@ -90,6 +99,9 @@ class Entry(models.Model):
   def get_absolute_url(self):
     return reverse('detail', kwargs={'journal_id': self.journal_id})
   
+  def mood_display(self):
+    return self.get_mood_display()
+  
 
 
 class Travel(models.Model):
@@ -97,7 +109,11 @@ class Travel(models.Model):
   date = models.DateField()
   body = models.CharField(max_length=1000)
   notes = models.CharField(max_length=300)
-  mood_tracker = models.CharField(max_length=25)
+  mood = models.CharField(
+	max_length=1,
+	choices=MOODS,
+	default=MOODS[0][0]
+  )
   location = models.CharField(max_length=50)
   food = models.CharField(max_length=50)
   weather = models.CharField(
@@ -117,6 +133,9 @@ class Travel(models.Model):
   
   def weather_display(self):
     return self.get_weather_display()
+  
+  def mood_display(self):
+    return self.get_mood_display()
   
   def get_absolute_url(self):
     return reverse('detail', kwargs={'journal_id': self.journal_id})
@@ -142,7 +161,7 @@ class Wellness(models.Model):
   journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
 
   def mood_display(self):
-    return self.get_weather_display()
+    return self.get_mood_display()
 
   def get_absolute_url(self):
     return reverse('detail', kwargs={'journal_id': self.journal_id})

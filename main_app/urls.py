@@ -15,5 +15,7 @@ urlpatterns = [
   path('entries/<int:entry_id>/', views.entry_detail, name='entry_detail'),
   path('travels/<int:pk>/update/', views.TravelUpdate.as_view(), name='travel_update'),
   path('travels/<int:pk>/delete/', views.TravelDelete.as_view(), name='travel_delete'),
+  path('wellness/<int:pk>/update/', views.WellnessUpdate.as_view(), name='wellness_update'),
+  path('wellness/<int:pk>/delete/', views.WellnessDelete.as_view(), name='wellness_delete'),
 ]
 
