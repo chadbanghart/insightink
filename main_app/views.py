@@ -81,11 +81,11 @@ def journals_detail(request, journal_id):
     'journal': journal,
     'travels': travels
   })
-  elif journal.has_no_entries():
-    print('no entries')
+  if journal.is_empty():
     return render(request, 'journals/detail.html', {
     'journal': journal,
   })
+
   elif journal.has_entries():
     print('entries')
     entries = journal.entry_set.all()
@@ -99,14 +99,16 @@ def journals_detail(request, journal_id):
 def add_entry(request, journal_id):
   error_message = ''
   journal = Journal.objects.get(id=journal_id)
+
   if journal.is_travel():
     entry_form = TravelForm(request.POST)
   else:
     entry_form = EntryForm(request.POST)
-  journal = journal_id
+
+  journal = journal.id
   if entry_form.is_valid():
     new_entry = entry_form.save(commit=False)
-    new_entry.journal_id = journal
+    new_entry.journal_id = journal_id
     new_entry.save()
     return redirect('detail', journal_id=journal_id)
   else:

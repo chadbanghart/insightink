@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <h1>{{user}}'s Journals</h1>
 <div class="row">
     {% for journal in journals %}
         <div class="col s4">
-            <div class="card">
+            <div class="card journal-card">
+                <div class="card-image waves-effect waves-block waves-light" >
+                    {% if journal.template == 'T' %}
+                    <img class="activator journal-image" src="{% static 'images/travel.jpg' %}">
+                    {% elif journal.template == 'P' %}
+                    <img class="activator journal-image" src="{% static 'images/personal.jpg' %}" >
+                    {% elif journal.template == 'H' %}
+                    <img class="activator journal-image" src="{% static 'images/wellness.jpg' %}">
+                    {% endif %}
+                </div>
                 <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">{{ journal.name }}<i class="material-icons right">more_vert</i></span>
                     <a href="{% url 'detail' journal.id %}">
-                        <span class="card-title">{{ journal.name }}</span>
                         <p>Journal Type: {{ journal.get_template_display }}</p>
                     </a>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{ journal.name }}<i class="material-icons right">close</i></span>
+                    <p>Journal Type: {{ journal.get_template_display }}</p>
+                    <p>Entries: {{ journal.count }}</p>
                     <div class="card-action">
                         <a href="{% url 'journals_update' journal.id %}">Edit</a>
                         <a href="{% url 'journals_delete' journal.id %}">Delete</a>
