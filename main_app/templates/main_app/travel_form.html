@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Edit {{object.title}} Entry</h1>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <table> {{ form.as_table }} </table>
+  <input type="submit" value="Submit!" class="btn">
+</form>
+
+<script>
+  const selectEl = document.getElementById('id_weather');
+  M.FormSelect.init(selectEl);
+</script>
+
+{% endblock %}

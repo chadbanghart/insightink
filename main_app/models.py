@@ -98,3 +98,6 @@ class Travel(models.Model):
   
   def weather_display(self):
     return self.get_weather_display()
+  
+  def get_absolute_url(self):
+    return reverse('detail', kwargs={'journal_id': self.journal_id})
