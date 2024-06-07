@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Entry Title: {{ wellness.title }}</h1>
+
+<div class="card">
+  <div class="card-content">
+    <p> Date: {{wellness.date}} </p>
+    <p> Content: {{wellness.body}} </p>
+    <p> Mood: {{wellness.mood_display}}</p>
+    <p> Affirmations: {{wellness.affirmation}}</p>
+    <p> Food: {{wellness.food}}</p>
+    <p> Sleep: {{wellness.sleep}} hrs</p>
+    <p> Notes: {{wellness.notes}}</p>
+  </div>
+</div>
+
+{% endblock %}

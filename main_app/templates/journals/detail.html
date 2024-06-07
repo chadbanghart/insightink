@@ -16,7 +16,9 @@
 {% for travel in travels %}
 <div class="card">
   <div class="card-content">
-    <h3>{{travel.title }}</h3>
+    <a href="{% url  'travel_detail' travel.id %}">
+      <h3>{{travel.title }}</h3>
+    </a>
     <p>Created at: {{travel.updated_at}}</p>
     <p> Date: {{travel.date}} </p>
     <p> Content: {{travel.body}} </p>
@@ -37,7 +39,9 @@
 {% for w in wellness %}
 <div class="card">
   <div class="card-content">
-    <h3>{{w.title }}</h3>
+    <a href="{% url  'wellness_detail' w.id %}">
+      <h3>{{w.title }}</h3>
+    </a>
     <p>Updated at: {{w.updated_at}}</p>
     <p> Date: {{w.date}} </p>
     <p> Content: {{w.body}} </p>
@@ -60,11 +64,11 @@
   <div class="card-content">
     <a href="{% url  'entry_detail' entry.id %}">
       <h3>{{entry.title}}</h3>
-      <p> Date: {{entry.date}} </p>
-      <p> Content: {{entry.body}} </p>
-      <p> Mood: {{entry.mood_display}}</p>
-      <p>Notes: {{entry.notes}}</p>
     </a>
+    <p> Date: {{entry.date}} </p>
+    <p> Content: {{entry.body}} </p>
+    <p> Mood: {{entry.mood_display}}</p>
+    <p>Notes: {{entry.notes}}</p>
     <div class="card-action">
       <a href="{% url 'entry_update' entry.id %}">Edit</a>
       <a href="{% url 'entry_delete' entry.id %}">Delete</a>
