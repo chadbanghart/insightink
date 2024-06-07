@@ -157,6 +157,12 @@ class TravelDelete(LoginRequiredMixin, DeleteView):
   model = Travel
   def get_success_url(self):
     return self.object.get_absolute_url()
+
+def travel_detail(request, travel_id):
+  travel = Travel.objects.get(id=travel_id)
+  return render(request, 'entry/travel_detail.html', {
+    'travel': travel
+  })
   
 class WellnessUpdate(LoginRequiredMixin, UpdateView):
   model = Wellness
@@ -167,3 +173,10 @@ class WellnessDelete(LoginRequiredMixin, DeleteView):
   model = Wellness
   def get_success_url(self):
     return self.object.get_absolute_url()
+  
+  
+def wellness_detail(request, w_id):
+  wellness = Wellness.objects.get(id=w_id)
+  return render(request, 'entry/wellness_detail.html', {
+    'wellness': wellness
+  })
