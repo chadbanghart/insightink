@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Journal, Entry
+from .models import Journal, Entry, Travel
 from .forms import JournalForm, EntryForm, TravelForm
 
 # Create your views here.
@@ -121,15 +121,29 @@ def add_entry(request, journal_id):
 
 class EntryUpdate(LoginRequiredMixin, UpdateView):
   model = Entry
-  fields = ['title', 'date', 'body', 'mood_tracker']
+  fields = ['title', 'date', 'body', 'mood_tracker', 'notes']
 
 
 class EntryDelete(LoginRequiredMixin, DeleteView):
   model = Entry
-  success_url = '/journals'
+  def get_success_url(self):
+    return self.object.get_absolute_url()
+  
+
 
 def entry_detail(request, entry_id):
   entry = Entry.objects.get(id=entry_id)
   return render(request, 'entry/detail.html', {
     'entry': entry
   })
+
+
+class TravelUpdate(LoginRequiredMixin, UpdateView):
+  model = Travel
+  fields = ['title', 'date', 'body', 'mood_tracker', 'location', 'food', 'weather', 'notes']
+
+
+class TravelDelete(LoginRequiredMixin, DeleteView):
+  model = Travel
+  def get_success_url(self):
+    return self.object.get_absolute_url()
