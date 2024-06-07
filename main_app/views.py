@@ -81,15 +81,11 @@ def journals_detail(request, journal_id):
     'journal': journal,
     'travels': travels
   })
-  elif journal.is_empty():
+  if journal.is_empty():
     return render(request, 'journals/detail.html', {
     'journal': journal,
   })
-  # elif journal.has_no_entries():
-  #   # print('no entries')
-  #   return render(request, 'journals/detail.html', {
-  #   'journal': journal,
-  # })
+
   elif journal.has_entries():
     print('entries')
     entries = journal.entry_set.all()

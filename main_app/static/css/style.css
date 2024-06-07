@@ -5,6 +5,10 @@ footer.page-footer {
   color: black;
 }
 
+/* .journal-card {
+  min-width: 325px;
+} */
+
 .journal-image {
   max-height: 350px;
 }
