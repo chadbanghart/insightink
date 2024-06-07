@@ -9,7 +9,7 @@
 </h1>
 
 
-{% if journal.has_no_entries %}
+{% if journal.is_empty %}
   <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 
 {% elif journal.template == 'T' %}
