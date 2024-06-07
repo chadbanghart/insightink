@@ -4,25 +4,35 @@
 <h1>Create an Entry</h1>
 
 <!-- Leaving the action empty makes the form post to the same url used to display it -->
- {% if journal.template == 'P'%}
-  <form action="" method="POST">
-    {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ entry_form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
+{% if journal.template == 'P'%}
+<form action="" method="POST">
+  {% csrf_token %}
+  <table>
+    <!-- Render the inputs inside of <tr>s & <td>s -->
+    {{ entry_form.as_table }}
+  </table>
+  <input type="submit" value="Submit!" class="btn">
+</form>
+
+{% elif journal.template == 'H'%}
+<form action="" method="POST">
+  {% csrf_token %}
+  <table>
+    <!-- Render the inputs inside of <tr>s & <td>s -->
+    {{ entry_form.as_table }}
+  </table>
+  <input type="submit" value="Submit!" class="btn">
+</form>
 
 {% else %}
-  <form action="" method="POST">
-    {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ entry_form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
+<form action="" method="POST">
+  {% csrf_token %}
+  <table>
+    <!-- Render the inputs inside of <tr>s & <td>s -->
+    {{ entry_form.as_table }}
+  </table>
+  <input type="submit" value="Submit!" class="btn">
+</form>
 {% endif %}
 
 
@@ -39,6 +49,9 @@
 
   const selectEl = document.getElementById('id_weather');
   M.FormSelect.init(selectEl);
+
+  const moodEl = document.getElementById('id_mood');
+  M.FormSelect.init(moodEl);
 
 </script>
 

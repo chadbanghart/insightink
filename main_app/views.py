@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Journal, Entry, Travel
-from .forms import JournalForm, EntryForm, TravelForm
+from .models import Journal, Entry, Travel, Wellness
+from .forms import JournalForm, EntryForm, TravelForm, WellnessForm
 
 # Create your views here.
 # @login_required -> auth decorator for view functions
@@ -110,6 +110,8 @@ def add_entry(request, journal_id):
 
   if journal.is_travel():
     entry_form = TravelForm(request.POST)
+  elif journal.is_wellness():
+    entry_form = WellnessForm(request.POST)  
   else:
     entry_form = EntryForm(request.POST)
 
@@ -129,7 +131,7 @@ def add_entry(request, journal_id):
 
 class EntryUpdate(LoginRequiredMixin, UpdateView):
   model = Entry
-  fields = ['title', 'date', 'body', 'mood_tracker', 'notes']
+  fields = ['title', 'date', 'body', 'mood', 'notes']
 
 
 class EntryDelete(LoginRequiredMixin, DeleteView):
@@ -148,10 +150,20 @@ def entry_detail(request, entry_id):
 
 class TravelUpdate(LoginRequiredMixin, UpdateView):
   model = Travel
-  fields = ['title', 'date', 'body', 'mood_tracker', 'location', 'food', 'weather', 'notes']
+  fields = ['title', 'date', 'body', 'mood', 'location', 'food', 'weather', 'notes']
 
 
 class TravelDelete(LoginRequiredMixin, DeleteView):
   model = Travel
+  def get_success_url(self):
+    return self.object.get_absolute_url()
+  
+class WellnessUpdate(LoginRequiredMixin, UpdateView):
+  model = Wellness
+  fields = ['title', 'body', 'date', 'mood', 'affirmation', 'sleep', 'food', 'notes']   
+
+
+class WellnessDelete(LoginRequiredMixin, DeleteView):
+  model = Wellness
   def get_success_url(self):
     return self.object.get_absolute_url()
