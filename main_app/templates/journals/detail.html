@@ -13,26 +13,46 @@
 <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 
 {% elif journal.template == 'T' %}
-<p>hey there</p>
-{% for travel in travels %}
-<div class="card">
-  <div class="card-content">
-    <h3>{{travel.title }}</h3>
-    <p>Created at: {{travel.updated_at}}</p>
-    <p> Date: {{travel.date}} </p>
-    <p> Content: {{travel.body}} </p>
-    <p> Mood: {{travel.mood_tracker}}</p>
-    <p> Location: {{travel.location}}</p>
-    <p> Food: {{travel.food}}</p>
-    <p> Weather: {{travel.weather_display}}</p>
-    <p> Notes: {{travel.notes}}</p>
-    <div class="card-action">
-      <a href="{% url 'travel_update' travel.id %}">Edit</a>
-      <a href="{% url 'travel_delete' travel.id %}">Delete</a>
+  {% for travel in travels %}
+    <div class="card">
+      <div class="card-content">
+        <h3>{{travel.title }}</h3>
+        <p>Created at: {{travel.updated_at}}</p>
+        <p> Date: {{travel.date}} </p>
+        <p> Content: {{travel.body}} </p>
+        <p> Mood: {{travel.mood_tracker}}</p>
+        <p> Location: {{travel.location}}</p>
+        <p> Food: {{travel.food}}</p>
+        <p> Weather: {{travel.weather_display}}</p>
+        <p> Notes: {{travel.notes}}</p>
+        <div class="card-action">
+          <a href="{% url 'travel_update' travel.id %}">Edit</a>
+          <a href="{% url 'travel_delete' travel.id %}">Delete</a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-{% endfor %}
+  {% endfor %}
+
+{% elif journal.template == 'H' %}
+  {% for w in wellness %}
+    <div class="card">
+      <div class="card-content">
+        <h3>{{w.title }}</h3>
+        <p>Updated at: {{w.updated_at}}</p>
+        <p> Date: {{w.date}} </p>
+        <p> Content: {{w.body}} </p>
+        <p> Mood: {{w.mood}}</p>
+        <p> Affirmations: {{w.affirmation}}</p>
+        <p> Food: {{w.food}}</p>
+        <p> Sleep: {{w.sleep}} hrs</p>
+        <p> Notes: {{w.notes}}</p>
+        <div class="card-action">
+          <a href="">Edit</a>
+          <a href="">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 
 {% elif journal.has_entries %}
 {% for entry in entries %}
