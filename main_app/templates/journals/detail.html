@@ -8,14 +8,12 @@
   </span>
 </h1>
 
-<!----------------------------------------------------------------->
-<p>{{journal.get_template_display}}</p>
-<!----------------------------------------------------------------->
 
 {% if journal.has_no_entries %}
   <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 
 {% elif journal.template == 'T' %}
+<p>hey there</p>
   {% for travel in travels %}
   <div class="card">
     <div class="card-content">

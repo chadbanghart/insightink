@@ -40,6 +40,10 @@ class Journal(models.Model):
   def has_entries(self):
     return self.entry_set.count() > 0
   
+  def is_empty(self):
+    if self.entry_set.count() and self.travel_set.count() == 0:
+      return False
+  
   def has_no_entries(self):
     return self.entry_set.count() == 0
   
@@ -82,7 +86,7 @@ class Travel(models.Model):
   journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
 
   def __str__(self):
-    return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , '{self.title}'"
+    return f"journal_id: {self.journal.id}, user {self.journal.user.id}: {self.journal.user} , template: {self.journal.template}, '{self.title}'"
   
   def weather_display(self):
     return self.get_weather_display()
