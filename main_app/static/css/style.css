@@ -5,15 +5,53 @@ body {
 }
 
 
+
 footer.page-footer {
   padding: 10px;
   text-align: center;
   color: black;
 }
 
+nav {
+  position: fixed;
+  height: 100%;
+  width: 150px;
+  float: left;
+  padding:5px;
+  flex-direction: column;
+}
+
+nav ul li {
+  margin-top: 5px;
+  width: 100%;
+}
+
+#create {
+  font-size: 12px;
+}
+/* 
+.nav-wrapper {
+  background-color:#334a94;
+ height:300px;
+ width:150px;
+ float:left;
+ padding:5px;
+  flex-direction: column;
+} */
+
 /* .journal-card {
   min-width: 325px;
 } */
+
+.container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.background {
+  background-image: url("/static/images/background.jpg");
+  width: 100%;
+}
 
 .journal-image {
   max-height: 350px;
@@ -187,4 +225,26 @@ h1, h3 {
   background-color: gray;
   font-weight: 600;
   color: black;
+}
+
+#index {
+  margin-top: 15px;
+  min-height: 150px;
+  padding: 2px;
+  line-height: 29px;
+}
+
+#entry-card {
+  padding: 2px 5px;
+}
+
+#entry-card h3 {
+  padding-left: 15px;
+}
+
+.bold-label {
+  font-weight: bold;
+  font-family: "Bad Script", cursive;
+  font-size: 15px;
+  letter-spacing: 1px;
 }
