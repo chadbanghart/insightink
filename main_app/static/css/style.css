@@ -1,7 +1,13 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
 
 footer.page-footer {
-  padding-top: 0;
-  text-align: right;
+  padding: 10px;
+  text-align: center;
   color: black;
 }
 
@@ -22,4 +28,112 @@ footer.page-footer {
 .img-size {
   height: 200px;
   width: 200px;
+}
+
+.journal-container {
+  padding: 20px;
+  width: 50%;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+  padding: 10px;
+  width: 40%;
+  border-radius: 2%;
+  color: #000000;
+  background-color: #e89cae;
+}
+
+.display-field {
+  margin-bottom: 20px;
+}
+
+.date-display {
+  font-size: 18px;
+  margin-top: 0;
+  padding: 10px;
+  color: #000000;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.title-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.body-desc {
+  background-color: #eeccd4;
+  padding: 10px;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.notes-section {
+  margin-top: 20px;
+  min-height: 150px;
+  padding: 5px;
+  border: 2px solid rgba(128, 128, 128, 0.5);
+  border-radius: 5px;
+  background: repeating-linear-gradient(
+    white,
+    white 28px,
+    #e0e0e0 28px,
+    #e0e0e0 29px
+  );
+  position: relative;
+}
+
+h6 {
+  font-weight: 600;
+  margin-top: 0px;
+  background-color: #eeccd4;
+  font-family: "Bad Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.affirmations {
+  min-height: 150px;
+  border: 2px solid rgba(128, 128, 128, 0.5);
+  border-radius: 5px;
+  padding: 5px;
+  background: repeating-linear-gradient(
+    white,
+    white 28px,
+    #e0e0e0 28px,
+    #e0e0e0 29px
+  );
+  position: relative;
+}
+
+.mood-sleep-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mood {
+ width: 45%;
+}
+
+.sleep{
+  width: 45%;
+}
+
+h1, h3 {
+  font-family: "Bad Script", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
