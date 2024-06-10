@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <h1>Journal: {{ journal.name }}
@@ -13,71 +14,120 @@
 <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 
 {% elif journal.template == 'T' %}
+<div class="row">
 {% for travel in travels %}
-<div class="card">
-  <div class="card-content">
-    <a href="{% url  'travel_detail' travel.id %}">
-      <h3>{{travel.title }}</h3>
-    </a>
-    <p>Created at: {{travel.updated_at}}</p>
-    <p> Date: {{travel.date}} </p>
-    <p> Content: {{travel.body}} </p>
-    <p> Mood: {{travel.mood_display}}</p>
-    <p> Location: {{travel.location}}</p>
-    <p> Food: {{travel.food}}</p>
-    <p> Weather: {{travel.weather_display}}</p>
-    <p> Notes: {{travel.notes}}</p>
-    <div class="card-action">
-      <a href="{% url 'travel_update' travel.id %}">Edit</a>
-      <a href="{% url 'travel_delete' travel.id %}">Delete</a>
+<div class="col s4">
+  <div class="card">
+    <div class="card-content">
+      <div class="display-field body-desc" id="entry-card">
+        <a href="{% url  'travel_detail' travel.id %}">
+          <h3>{{travel.title }}</h3>
+        </a>
+      </div>
+      <div class="display-field affirmations" id="index">
+        <p>Created at: {{travel.updated_at}}</p>
+        <p> Date: {{travel.date}} </p>
+        <p> Content: {{travel.body}} </p>
+        <p> Mood: {{travel.mood_display}}</p>
+        <p> Location: {{travel.location}}</p>
+        <p> Food: {{travel.food}}</p>
+        <p> Weather: {{travel.weather_display}}</p>
+        <p> Notes: {{travel.notes}}</p>
+        
+      </div>
+      <div class="card-action">
+        <a href="{% url 'travel_update' travel.id %}">Edit</a>
+        <a href="{% url 'travel_delete' travel.id %}">Delete</a>
+      </div>
     </div>
   </div>
+
 </div>
 {% endfor %}
+</div>
+
 
 {% elif journal.template == 'H' %}
-{% for w in wellness %}
-<div class="card">
-  <div class="card-content">
-    <a href="{% url  'wellness_detail' w.id %}">
-      <h3>{{w.title }}</h3>
-    </a>
-    <p>Updated at: {{w.updated_at}}</p>
-    <p> Date: {{w.date}} </p>
-    <p> Content: {{w.body}} </p>
-    <p> Mood: {{w.mood_display}}</p>
-    <p> Affirmations: {{w.affirmation}}</p>
-    <p> Food: {{w.food}}</p>
-    <p> Sleep: {{w.sleep}} hrs</p>
-    <p> Notes: {{w.notes}}</p>
-    <div class="card-action">
-      <a href="{% url 'wellness_update' w.id %}">Edit</a>
-      <a href="{% url 'wellness_delete' w.id %}">Delete</a>
+<div class="row">
+  {% for w in wellness %}
+  <div class="col s4">
+    <div class="card">
+      <div class="card-content">
+        <div class="display-field body-desc" id="entry-card">
+          <a href="{% url  'wellness_detail' w.id %}">
+            <h3>{{w.title }}</h3>
+          </a>
+        </div>
+        <div class="display-field affirmations" id="index">
+          <p>Updated at: {{w.updated_at}}</p>
+          <p> Date: {{w.date}} </p>
+          <p> Content: {{w.body}} </p>
+          <p> Mood: {{w.mood_display}}</p>
+          <p> Affirmations: {{w.affirmation}}</p>
+          <p> Food: {{w.food}}</p>
+          <p> Sleep: {{w.sleep}} hrs</p>
+          <p> Notes: {{w.notes}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{% url 'wellness_update' w.id %}">Edit</a>
+          <a href="{% url 'wellness_delete' w.id %}">Delete</a>
+        </div>
+      </div>
     </div>
   </div>
+  {% endfor %}
 </div>
-{% endfor %}
 
 {% elif journal.has_entries %}
-{% for entry in entries %}
-<div class="card">
-  <div class="card-content">
-    <a href="{% url  'entry_detail' entry.id %}">
-      <h3>{{entry.title}}</h3>
-    </a>
-    <p> Date: {{entry.date}} </p>
-    <p> Content: {{entry.body}} </p>
-    <p> Mood: {{entry.mood_display}}</p>
-    <p>Notes: {{entry.notes}}</p>
-    <div class="card-action">
-      <a href="{% url 'entry_update' entry.id %}">Edit</a>
-      <a href="{% url 'entry_delete' entry.id %}">Delete</a>
+<div class="row">
+  {% for entry in entries %}
+  <div class="col s4">
+    <div class="card">
+      <div class="card-content">
+        <div class="display-field body-desc" id="entry-card">
+          <a href="{% url  'entry_detail' entry.id %}">
+            <h3>{{entry.title}}</h3>
+          </a>
+    
+        </div>
+        <div class="display-field affirmations" id="index">
+          <p> Date: {{entry.date}} </p>
+          <p> Content: {{entry.body}} </p>
+          <p> Mood: {{entry.mood_display}}</p>
+          <p>Notes: {{entry.notes}}</p>
+    
+        </div>
+        <div class="card-action">
+          <a href="{% url 'entry_update' entry.id %}">Edit</a>
+          <a href="{% url 'entry_delete' entry.id %}">Delete</a>
+        </div>
+      </div>
     </div>
+  
   </div>
+  {% endfor %}
 </div>
-{% endfor %}
 
 {% endif %}
+
+<script>
+  const paragraphs = document.querySelectorAll('#index p');
+  paragraphs.forEach(paragraph => {
+      const text = paragraph.innerHTML;
+      const parts = text.split(':');
+      if (parts.length > 1) {
+          parts[0] = `<span class="bold-label">${parts[0]}:</span>`;
+          paragraph.innerHTML = parts.join('');
+      }
+  });
+
+  const upper = document.querySelectorAll('h3');
+  upper.forEach(header => {
+    const text = header.innerHTML;
+    const upperCaseText = text.charAt(0).toUpperCase() + text.slice(1);
+    header.innerHTML = upperCaseText;
+  })
+</script>
 
 
 
