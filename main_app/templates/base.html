@@ -30,6 +30,9 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'journals_index' %}">Journals</a></li>
           <li><a href="{% url 'journals_create' %}">Create a Journal</a></li>
+          <li><a href="{% url 'personal_index' %}">Personal</a></li>
+          <li><a href="{% url 'travels_index' %}">Travel</a></li>
+          <li><a href="{% url 'wellness_index' %}">Wellness</a></li>
           <li>
             <a href="#">
               <form method="post" action="{% url 'logout' %}">

@@ -20,5 +20,9 @@ urlpatterns = [
   path('wellness/<int:pk>/delete/', views.WellnessDelete.as_view(), name='wellness_delete'),
   path('wellness/<int:w_id>/', views.wellness_detail, name='wellness_detail'),
   path('travels/<int:travel_id>/add_photo/', views.add_photo, name='add_photo'),
+  path('travels/', views.travels_index, name='travels_index'),
+  path('wellness/', views.wellness_index, name='wellness_index'),
+  path('personal/', views.personal_index, name='personal_index'),
+  
 ]
 
