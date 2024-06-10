@@ -28,11 +28,12 @@ footer.page-footer {
 .img-size {
   height: 200px;
   width: 200px;
+  justify-content: center;
 }
 
 .journal-container {
   padding: 20px;
-  width: 50%;
+  width: 70%;
   margin: auto;
 }
 
@@ -118,6 +119,11 @@ h6 {
   position: relative;
 }
 
+.content {
+  padding: 5px;
+  line-height: 29px;
+}
+
 .mood-sleep-container {
   display: flex;
   justify-content: space-between;
@@ -136,4 +142,49 @@ h1, h3 {
   font-family: "Bad Script", cursive;
   font-weight: 400;
   font-style: normal;
+}
+
+.content-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px
+}
+
+.left-content, .right-content {
+  padding: 10px;
+}
+
+.photo-display {
+  padding: 20px;
+}
+
+.photo-form {
+  padding-top: 10px;
+}
+
+.file-input {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.photos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px;
+}
+
+.delete-btn {
+  display: flex;
+  position: absolute;
+  width: 20px;
+  height: min-content;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 10%;
+  background-color: gray;
+  font-weight: 600;
+  color: black;
 }

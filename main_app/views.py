@@ -221,3 +221,10 @@ def personal_index(request):
   journals = Journal.objects.filter(user=request.user, template = 'P')
   user = request.user
   return render(request, 'journals/index.html', { 'journals': journals, 'user': user })
+
+
+
+class PhotoDelete(LoginRequiredMixin, DeleteView):
+  model = Photo
+  def get_success_url(self):
+    return self.object.get_absolute_url()
