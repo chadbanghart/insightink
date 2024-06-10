@@ -203,3 +203,21 @@ def add_photo(request, travel_id):
             print('An error occurred uploading file to S3')
             print(e)
     return redirect('travel_detail', travel_id=travel_id)
+
+
+def travels_index(request):
+  journals = Journal.objects.filter(user=request.user, template = 'T')
+  user = request.user
+  return render(request, 'journals/index.html', { 'journals': journals, 'user': user })
+
+
+def wellness_index(request):
+  journals = Journal.objects.filter(user=request.user, template = 'H')
+  user = request.user
+  return render(request, 'journals/index.html', { 'journals': journals, 'user': user })
+
+
+def personal_index(request):
+  journals = Journal.objects.filter(user=request.user, template = 'P')
+  user = request.user
+  return render(request, 'journals/index.html', { 'journals': journals, 'user': user })
