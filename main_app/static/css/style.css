@@ -1,3 +1,9 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
 
 footer.page-footer {
   padding: 10px;
@@ -91,13 +97,17 @@ footer.page-footer {
 
 h6 {
   font-weight: 600;
-  margin-top: 5px;
+  margin-top: 0px;
   background-color: #eeccd4;
+  font-family: "Bad Script", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .affirmations {
   min-height: 150px;
   border: 2px solid rgba(128, 128, 128, 0.5);
+  border-radius: 5px;
   padding: 5px;
   background: repeating-linear-gradient(
     white,
@@ -120,4 +130,10 @@ h6 {
 
 .sleep{
   width: 45%;
+}
+
+h1, h3 {
+  font-family: "Bad Script", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
