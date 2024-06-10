@@ -175,3 +175,6 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for travel_id: {self.travel_id} @{self.url}"  
+    
+    def get_absolute_url(self):
+      return reverse('travel_detail', kwargs={'travel_id': self.travel_id})
