@@ -1,17 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Entry Title: {{ wellness.title }}</h1>
 
-<div class="card">
-  <div class="card-content">
-    <p> Date: {{wellness.date}} </p>
-    <p> Content: {{wellness.body}} </p>
-    <p> Mood: {{wellness.mood_display}}</p>
-    <p> Affirmations: {{wellness.affirmation}}</p>
-    <p> Food: {{wellness.food}}</p>
-    <p> Sleep: {{wellness.sleep}} hrs</p>
-    <p> Notes: {{wellness.notes}}</p>
+<div class="journal-container">
+  <div class="card">
+    <div class="card-content">
+      <div class="title-date-container">
+        <h1 class="section-title">{{ wellness.title }}</h1>
+        <h3 class="date-display">Date: {{ wellness.date }}</h3>
+      </div>
+      <div class="display-field body-desc">
+        <h6>General Reflection on Today...</h6>
+        <p>{{ wellness.body }}</p>
+      </div>
+      <div class="display-field affirmations">
+        <h6 class="center-align">Quotes & Affirmations</h6>
+        <p>{{ wellness.affirmation }}</p>
+      </div>
+      <div class="mood-sleep-container">
+        <div class="display-field mood">
+          <h6>Today I am Feeling...</h6>
+          <p>{{ wellness.mood_display }}</p>
+        </div>
+        <div class="display-field sleep">
+          <h6>Today I Slept</h6>
+          <p>{{ wellness.sleep }} hrs</p>
+        </div>
+      </div>
+      <div class="display-field">
+        <h6>Today I Ate</h6>
+        <p>{{ wellness.food }}</p>
+      </div>
+      <div class="display-field notes-section">
+        <h6>Thoughts of the day & Notes</h6>
+        <p>{{ wellness.notes }}</p>
+      </div>
+    </div>
   </div>
 </div>
 
