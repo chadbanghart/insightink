@@ -2,12 +2,17 @@
 {% load static %}
 {% block content %}
 
-<h1>Journal: {{ journal.name }}
-  <span class="right">
+<div  id="title-nav">
+  <h1>Journal: {{ journal.name }}</h1>
+  <div  id="breadcrumb-container">
+    <a href="{% url 'journals_index' %}" class="breadcrumb">My Journals</a>
+    <span class="breadcrumb">{{journal.get_template_display}}</span>
+  </div>
+  <div class="" >
     <a href="{% url 'add_entry' journal.id %}" class="btn-floating btn-large waves-effect waves-light red"><i
         class="material-icons">add</i></a>
-  </span>
-</h1>
+    </div>
+</div>
 
 
 {% if journal.is_empty %}
@@ -19,7 +24,7 @@
 <div class="col s4">
   <div class="card">
     <div class="card-content">
-      <div class="display-field body-desc" id="entry-card">
+      <div class="display-field body-desc" id="entry-card id={{journal.color}}">
         <a href="{% url  'travel_detail' travel.id %}">
           <h3>{{travel.title }}</h3>
         </a>
