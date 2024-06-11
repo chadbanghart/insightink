@@ -3,7 +3,7 @@
 {% block content %}
 
 <div id="title-nav">
-  <h1>Journal: {{ journal.name }}</h1>
+  <h1>Journal: <span class="bluey-text">{{ journal.name }}</span></h1>
   <div class="breadcrumb-container">
     <a href="{% url 'journals_index' %}" class="breadcrumb">My Journals</a>
     <span class="breadcrumb">{{journal.get_template_display}}</span>
@@ -24,7 +24,7 @@
   <div class="col s4">
     <div class="card">
       <div class="card-content">
-        <div class="display-field body-desc" id="entry-card id={{journal.color}}">
+        <div class="display-field body-desc" id="entry-card">
           <a href="{% url  'travel_detail' travel.id %}">
             <h3>{{travel.title }}</h3>
           </a>

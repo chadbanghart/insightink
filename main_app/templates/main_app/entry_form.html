@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Edit {{object.title}} Entry</h1>
+<h1 class="center">Edit <span class="pinky-text">'{{object.title}}'</span> Entry</h1>
 
 <form action="" method="POST">
     {% csrf_token %}

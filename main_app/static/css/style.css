@@ -24,6 +24,22 @@ main {
 title-nav h1 {
   margin-bottom: 0px;
 }
+.submit-btn {
+  border: none;
+  font-size: 15px;
+  background-color: transparent;
+  color: var(--text-primary);
+  padding: 0;
+  font-weight: 600;
+}
+
+.btn, .btn-large, .btn-small {
+  background-color: var(--text-breadcrumbs);
+}
+
+.btn:hover, .btn-large:hover, .btn-small:hover {
+  background-color: var(--text-breadcrumbs);
+}
 
 
 footer.page-footer {
@@ -46,12 +62,14 @@ nav {
 nav ul li {
   margin-top: 5px;
   width: 100%;
+  padding: 5px 0;
 }
 
 nav ul li a {
   color: var(--text-primary);
+  font-size: 20px;
+  text-align: center;
 }
-
 
 #title-nav {
   margin-bottom: 10px;
@@ -85,8 +103,16 @@ nav ul li a {
   color: var(--text-tertiary);
 }
 
+.pinky-text {
+  color: var(--text-breadcrumbs);
+}
+.bluey-text {
+  color: var(--text-tertiary);
+}
+
 #create {
-  font-size: 12px;
+  line-height: 1;
+  padding: 15px;
 }
 
 .container {
@@ -169,7 +195,7 @@ nav ul li a {
 }
 
 .body-desc a {
-  color: var(--text-tertiary);
+  color: var(--text-primary);
 }
 
 .card-content {
