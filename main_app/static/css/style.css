@@ -1,3 +1,11 @@
+:root {
+  --text-primary: #543a3a;
+  --text-secondary: #f9ecec;
+  --text-tertiary: #38598b;
+  --bg-primary: #ecf2f9;
+  --bg-secondary: #f0d9da;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -12,14 +20,20 @@ main {
   padding: 0 0 50px 150px;
 }
 
+title-nav h1 {
+  margin-bottom: 0px;
+}
+
 
 footer.page-footer {
   padding: 10px;
   text-align: center;
-  color: black;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 }
 
 nav {
+  background-color: var(--bg-primary);
   position: fixed;
   height: 100%;
   width: 150px;
@@ -33,27 +47,30 @@ nav ul li {
   width: 100%;
 }
 
-.navbar-fixed {
-  background-color: orange;
-  color: purple;
+nav ul li a {
+  color: var(--text-primary);
 }
 
+
+#title-nav {
+  background-color: var(--bg-secondary);
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  }
+  
+.breadcrumb {
+  color: green;
+  background-color: lavender;
+}
+
+.breadcrumb:last-child {
+  color: 
+}
 #create {
   font-size: 12px;
 }
-/* 
-.nav-wrapper {
-  background-color:#334a94;
- height:300px;
- width:150px;
- float:left;
- padding:5px;
-  flex-direction: column;
-} */
-
-/* .journal-card {
-  min-width: 325px;
-} */
 
 .container {
   width: 100%;
@@ -95,7 +112,7 @@ nav ul li {
   width: 40%;
   border-radius: 2%;
   color: #000000;
-  background-color: #e89cae;
+  background-color: var(--bg-secondary);
 }
 
 .display-field {
@@ -119,8 +136,12 @@ nav ul li {
 }
 
 .body-desc {
-  background-color: #eeccd4;
+  background-color: var(--text-secondary);
   padding: 10px;
+}
+
+.body-desc a {
+  color: var(--text-tertiary);
 }
 
 .card-content {
@@ -149,7 +170,7 @@ nav ul li {
 h6 {
   font-weight: 600;
   margin-top: 0px;
-  background-color: #eeccd4;
+  background-color: var(--text-secondary);
   font-family: "Bad Script", cursive;
   font-weight: 400;
   font-style: normal;
@@ -259,4 +280,10 @@ h1, h3 {
   font-family: "Bad Script", cursive;
   font-size: 15px;
   letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 780) {
+  .title-nav {
+    align-items: flex-end;
+  }
 }
