@@ -72,4 +72,13 @@
   </div>
 </div>
 
+<script>
+  const mainEl = document.querySelector('main')
+  console.log(mainEl)
+  if (mainEl.classList.contains('container')) {
+    mainEl.classList.remove('container')
+  }
+  console.log(mainEl)
+</script>
+
 {% endblock %}
