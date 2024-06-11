@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<h1>{{user}}'s Journals</h1>
+<h1 class="center">{{user}}'s Journals</h1>
 {% if user.journal_set.count == 0 %}
 <div class="card-panel red-text center-align">{{user}} has no Journals</div>
 {% endif %}
