@@ -33,6 +33,11 @@ nav ul li {
   width: 100%;
 }
 
+.navbar-fixed {
+  background-color: orange;
+  color: purple;
+}
+
 #create {
   font-size: 12px;
 }

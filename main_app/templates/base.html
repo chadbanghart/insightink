@@ -23,12 +23,17 @@
 
 <body>
   <header class="navbar-fixed">
+    <div class="col s2">
+      <a href="#!" class="breadcrumb">First</a>
+      <a href="#!" class="breadcrumb">Second</a>
+      <a href="#!" class="breadcrumb">Third</a>
+    </div>
     <nav>
       <div class="nav-wrapper">
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
           {% if user.is_authenticated %}
-          <li><a  id="create" href="{% url 'journals_create' %}">Create a Journal</a></li>
+          <li><a id="create" href="{% url 'journals_create' %}">Create a Journal</a></li>
           <li><a href="{% url 'journals_index' %}">Journals</a></li>
           <li><a href="{% url 'personal_index' %}">Personal</a></li>
           <li><a href="{% url 'travels_index' %}">Travel</a></li>
