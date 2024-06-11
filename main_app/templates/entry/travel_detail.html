@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div  id="breadcrumb-container">
+<div  class="breadcrumb-container">
   <a href="{% url 'journals_index' %}" class="breadcrumb">My Journals</a>
-  <span class="breadcrumb">{{travel.journal_id}}</span>
+  <span class="breadcrumb">{{travel.journal.name}}</span>
 </div>
 
 <div class="background">
@@ -71,5 +71,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  const mainEl = document.querySelector('main')
+  console.log(mainEl)
+  if (mainEl.classList.contains('container')) {
+    mainEl.classList.remove('container')
+  }
+  console.log(mainEl)
+</script>
 
 {% endblock %}
