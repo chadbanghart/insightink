@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from datetime import date
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -78,8 +77,8 @@ class Journal(models.Model):
 class Entry(models.Model):
   title = models.CharField(max_length=50)
   date = models.DateField()
-  body = models.CharField(max_length=1000)
-  notes = models.CharField(max_length=300)
+  body = models.TextField(max_length=1000)
+  notes = models.TextField(max_length=300)
   mood = models.CharField(
 	max_length=1,
 	choices=MOODS,
@@ -107,15 +106,15 @@ class Entry(models.Model):
 class Travel(models.Model):
   title = models.CharField(max_length=50)
   date = models.DateField()
-  body = models.CharField(max_length=1000)
-  notes = models.CharField(max_length=300)
+  body = models.TextField(max_length=1000)
+  notes = models.TextField(max_length=300)
   mood = models.CharField(
 	max_length=1,
 	choices=MOODS,
 	default=MOODS[0][0]
   )
   location = models.CharField(max_length=50)
-  food = models.CharField(max_length=50)
+  food = models.TextField(max_length=150)
   weather = models.CharField(
 	max_length=1,
 	choices=WEATHER_TYPES,
@@ -148,7 +147,7 @@ class Wellness(models.Model):
   body = models.TextField(max_length=1000)
   notes = models.TextField(max_length=300)
   affirmation = models.TextField(max_length=200)
-  food = models.CharField(max_length=50)
+  food = models.TextField(max_length=150)
   sleep = models.IntegerField()
   mood = models.CharField(
 	max_length=1,

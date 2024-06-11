@@ -7,6 +7,7 @@
   {% csrf_token %}
   <table> {{ form.as_table }} </table>
   <input type="submit" value="Submit!" class="btn">
+  <a href="{% url 'detail' object.journal_id %}">Cancel</a>
 </form>
 
 <script>
