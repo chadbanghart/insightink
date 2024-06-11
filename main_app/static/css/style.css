@@ -58,14 +58,18 @@ nav ul li a {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  }
+}
 
-#breadcrumb-container {
+.breadcrumb-container {
   display: flex;
   align-items: center;
 }
 
-#breadcrumb-container .breadcrumb {
+#detail-breadcrumb {
+  margin-left: 150px;
+}
+
+.breadcrumb-container .breadcrumb {
   display: flex;
   align-items: center;
 }
