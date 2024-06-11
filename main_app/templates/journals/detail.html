@@ -2,16 +2,16 @@
 {% load static %}
 {% block content %}
 
-<div  id="title-nav">
+<div id="title-nav">
   <h1>Journal: {{ journal.name }}</h1>
-  <div  id="breadcrumb-container">
+  <div class="breadcrumb-container">
     <a href="{% url 'journals_index' %}" class="breadcrumb">My Journals</a>
     <span class="breadcrumb">{{journal.get_template_display}}</span>
   </div>
-  <div class="" >
+  <div class="">
     <a href="{% url 'add_entry' journal.id %}" class="btn-floating btn-large waves-effect waves-light red"><i
         class="material-icons">add</i></a>
-    </div>
+  </div>
 </div>
 
 
@@ -19,41 +19,41 @@
 <div class="card-panel red-text center-align">{{journal.name}} has no entries</div>
 
 {% elif journal.template == 'T' %}
-<div class="row">
-{% for travel in travels %}
-<div class="col s4">
-  <div class="card">
-    <div class="card-content">
-      <div class="display-field body-desc" id="entry-card id={{journal.color}}">
-        <a href="{% url  'travel_detail' travel.id %}">
-          <h3>{{travel.title }}</h3>
-        </a>
-      </div>
-      <div class="display-field affirmations" id="index">
-        <p>Created at: {{travel.updated_at}}</p>
-        <p> Date: {{travel.date}} </p>
-        <p> Content: {{travel.body}} </p>
-        <p> Mood: {{travel.mood_display}}</p>
-        <p> Location: {{travel.location}}</p>
-        <p> Food: {{travel.food}}</p>
-        <p> Weather: {{travel.weather_display}}</p>
-        <p> Notes: {{travel.notes}}</p>
-        
-      </div>
-      <div class="card-action">
-        <a href="{% url 'travel_update' travel.id %}">Edit</a>
-        <a href="{% url 'travel_delete' travel.id %}">Delete</a>
+<div class="row entries-container">
+  {% for travel in travels %}
+  <div class="col s4">
+    <div class="card">
+      <div class="card-content">
+        <div class="display-field body-desc" id="entry-card id={{journal.color}}">
+          <a href="{% url  'travel_detail' travel.id %}">
+            <h3>{{travel.title }}</h3>
+          </a>
+        </div>
+        <div class="display-field affirmations" id="index">
+          <p>Created at: {{travel.updated_at}}</p>
+          <p> Date: {{travel.date}} </p>
+          <p> Content: {{travel.body}} </p>
+          <p> Mood: {{travel.mood_display}}</p>
+          <p> Location: {{travel.location}}</p>
+          <p> Food: {{travel.food}}</p>
+          <p> Weather: {{travel.weather_display}}</p>
+          <p> Notes: {{travel.notes}}</p>
+
+        </div>
+        <div class="card-action">
+          <a href="{% url 'travel_update' travel.id %}">Edit</a>
+          <a href="{% url 'travel_delete' travel.id %}">Delete</a>
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
-{% endfor %}
+  </div>
+  {% endfor %}
 </div>
 
 
 {% elif journal.template == 'H' %}
-<div class="row">
+<div class="row entries-container">
   {% for w in wellness %}
   <div class="col s4">
     <div class="card">
@@ -84,23 +84,23 @@
 </div>
 
 {% elif journal.has_entries %}
-<div class="row">
+<div class="row entries-container">
   {% for entry in entries %}
   <div class="col s4">
     <div class="card">
-      <div class="card-content">
+      <div class="card-content detail-sizing">
         <div class="display-field body-desc" id="entry-card">
           <a href="{% url  'entry_detail' entry.id %}">
             <h3>{{entry.title}}</h3>
           </a>
-    
+
         </div>
         <div class="display-field affirmations" id="index">
           <p> Date: {{entry.date}} </p>
           <p> Content: {{entry.body}} </p>
           <p> Mood: {{entry.mood_display}}</p>
           <p>Notes: {{entry.notes}}</p>
-    
+
         </div>
         <div class="card-action">
           <a href="{% url 'entry_update' entry.id %}">Edit</a>
@@ -108,7 +108,7 @@
         </div>
       </div>
     </div>
-  
+
   </div>
   {% endfor %}
 </div>
@@ -118,12 +118,12 @@
 <script>
   const paragraphs = document.querySelectorAll('#index p');
   paragraphs.forEach(paragraph => {
-      const text = paragraph.innerHTML;
-      const parts = text.split(':');
-      if (parts.length > 1) {
-          parts[0] = `<span class="bold-label">${parts[0]}:</span>`;
-          paragraph.innerHTML = parts.join('');
-      }
+    const text = paragraph.innerHTML;
+    const parts = text.split(':');
+    if (parts.length > 1) {
+      parts[0] = `<span class="bold-label">${parts[0]}:</span>`;
+      paragraph.innerHTML = parts.join('');
+    }
   });
 
   const upper = document.querySelectorAll('h3');
