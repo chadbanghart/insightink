@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div  id="breadcrumb-container">
+  <a href="{% url 'journals_index' %}" class="breadcrumb">My Journals</a>
+  <span class="breadcrumb">{{travel.journal_id}}</span>
+</div>
+
 <div class="background">
   <div class="journal-container">
     <div class="card">
