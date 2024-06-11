@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="background">
 
-<h1>Entry Title: {{ entry.title }}</h1>
-
-<div class="card">
-  <div class="card-content">
-    <p> Date: {{entry.date}} </p>
-    <p> Content: {{entry.body}} </p>
-    <p> Mood: {{entry.mood_display}}</p>
-    <p>Notes: {{entry.notes}}</p>
+  <div class="journal-container">
+    <div class="card">
+      <div class="card-content">
+        <div class="title-date-container">
+          <h1 class="section-title">{{ entry.title }}</h1>
+          <h3 class="date-display">Date: {{ entry.date }}</h3>
+        </div>
+        <div class="display-field mood">
+          <h6>Today I am Feeling...</h6>
+          <p>{{ entry.mood_display }}</p>
+        </div>
+        <div class="display-field notes-section">
+          <h6>Today...</h6>
+          <p class="content">{{ entry.body }}</p>
+        </div>
+        <div class="display-field notes-section">
+          <h6>Notes</h6>
+          <p class="content">{{ entry.notes }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
