@@ -3,12 +3,16 @@
 
 <h1 class="center">Edit <span class="pinky-text">'{{object.title}}'</span> Entry</h1>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table> {{ form.as_table }} </table>
-    <input type="submit" value="Submit!" class="btn">
-    <a href="{% url 'detail' object.journal_id %}">Cancel</a>
-</form>
+<div class="entry-form-container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table> {{ form.as_table }} </table>
+        <div class="entry-form-submit">
+            <a href="{% url 'detail' object.journal_id %}">Cancel</a>
+            <input type="submit" value="Submit!" class="btn">
+        </div>
+    </form> 
+</div>
 
 <script>
     const moodEl = document.getElementById('id_mood');

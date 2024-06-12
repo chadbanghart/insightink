@@ -7,79 +7,70 @@
   <span class="breadcrumb">Journal Entry</span>
 </div>
 
-<div class="background">
-  <div class="journal-container">
-    <div class="card">
-      <div class="card-content">
-        <div class="title-date-container">
-          <h1 class="section-title">{{ travel.title }}</h1>
-          <h3 class="date-display">Date: {{ travel.date }}</h3>
-        </div>
-        <div class="content-container">
-          <div class="left-content">
-            <div class="display-field">
-              <h6>Location:</h6>
-              <p>{{travel.location}}</p>
-            </div>
-            <div class="display-field">
-              <h6>Weather:</h6>
-              <p>{{travel.weather_display}}</p>
-            </div>
-            <div class="display-field">
-              <h6>Mood:</h6>
-              <p>{{travel.mood_display}}</p>
-            </div>
-            <div class="display-field">
-              <h6>Food:</h6>
-              <p>{{travel.food}}</p>
-            </div>
-            <div>
-              <h6>Add Photos:</h6>
-              <form action="{% url 'add_photo' travel.id %}" enctype="multipart/form-data" method="POST"
-                class="photo-form">
-                {% csrf_token %}
-                <input type="file" name="photo-file" class="file-input">
-                <br><br>
-                <button type="submit" class="btn">Upload</button>
-              </form>
-            </div>
+<div class="journal-container">
+  <div class="card">
+    <div class="card-content">
+      <div class="title-date-container">
+        <h1 class="section-title">{{ travel.title }}</h1>
+        <h3 class="date-display">Date: {{ travel.date }}</h3>
+      </div>
+      <div class="content-container">
+        <div class="left-content">
+          <div class="display-field">
+            <h6>Location:</h6>
+            <p>{{travel.location}}</p>
           </div>
-          <div class="right-content">
-            <div class="affirmations">
-              <h6>Content:</h6>
-              <p class="content">{{travel.body}}</p>
-            </div>
-            <div class="notes-section">
-              <h6>Notes:</h6>
-              <p class="content">{{travel.notes}}</p>
-            </div>
+          <div class="display-field">
+            <h6>Weather:</h6>
+            <p>{{travel.weather_display}}</p>
+          </div>
+          <div class="display-field">
+            <h6>Mood:</h6>
+            <p>{{travel.mood_display}}</p>
+          </div>
+          <div class="display-field">
+            <h6>Food:</h6>
+            <p>{{travel.food}}</p>
+          </div>
+          <div>
+            <h6>Add Photos:</h6>
+            <form action="{% url 'add_photo' travel.id %}" enctype="multipart/form-data" method="POST"
+              class="photo-form">
+              {% csrf_token %}
+              <input type="file" name="photo-file" class="file-input">
+              <br><br>
+              <button type="submit" class="btn">Upload</button>
+            </form>
+          </div>
+        </div>
+        <div class="right-content">
+          <div class="affirmations">
+            <h6>Content:</h6>
+            <p class="content">{{travel.body}}</p>
+          </div>
+          <div class="notes-section">
+            <h6>Notes:</h6>
+            <p class="content">{{travel.notes}}</p>
           </div>
         </div>
       </div>
-      <div class="photo-display">
-        <h6>My Photos:</h6>
-        <div class="photos-container">
-          {% for photo in travel.photo_set.all %}
-          <div class="">
-            <a class="delete-btn" href="{% url 'photo_delete' photo.id %}">X</a>
-            <img class="img-size card-panel" src="{{photo.url}}">
-          </div>
-          {% empty %}
-          <div class="card-panel pinky-text center-align">No Photos Uploaded</div>
-          {% endfor %}
+    </div>
+    <div class="photo-display">
+      <h6>My Photos:</h6>
+      <div class="photos-container">
+        {% for photo in travel.photo_set.all %}
+        <div class="">
+          <a class="delete-btn" href="{% url 'photo_delete' photo.id %}">X</a>
+          <img class="img-size card-panel" src="{{photo.url}}">
         </div>
+        {% empty %}
+        <div class="card-panel pinky-text center-align">No Photos Uploaded</div>
+        {% endfor %}
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  const mainEl = document.querySelector('main')
-  console.log(mainEl)
-  if (mainEl.classList.contains('container')) {
-    mainEl.classList.remove('container')
-  }
-  console.log(mainEl)
-</script>
+
 
 {% endblock %}
