@@ -127,6 +127,7 @@ def add_entry(request, journal_id):
   else:
     error_message = "Invalid entry creation - try again"
   return render(request, 'journals/entry_form.html', { 
+    'journal' : journal,
     'entry_form': entry_form,
     'error_message': error_message
   })
