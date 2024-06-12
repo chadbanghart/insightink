@@ -1,6 +1,83 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<h1>Home</h1>
+<div class="home-container">
+  <div class="home-image">
+  </div>
+  <div class="home-motto">
+    <h3>Digitize Your Thoughts, Transform Your Life.</h3>
+    <h6>With us, journaling becomes more than just a habit—it becomes
+      a transformative journey towards self-discovery, productivity, and personal growth. Embrace the power of digital
+      journaling and unlock new possibilities for understanding, creativity, and fulfillment in your life.</h6>
+  </div>
+  <div class="home-about-container">
+    <div class="home-about">
+      <h4 class="about-title">About</h4>
+      <div class="about-content">
+        <p>Our app revolutionizes the way you engage with your thoughts and experiences. By
+          seamlessly digitizing your journaling process, we empower you to effortlessly capture, organize, and reflect
+          on every aspect of your life.</p>
+        <p>Whether you're an avid journaler or new to the practice, our intuitive platform
+          offers a diverse range of templates and features to suit your needs. From recording travel adventures to
+          tracking moods, or simply jotting down daily reflections, our app provides a
+          centralized hub for all your journaling endeavors.</p>
+      </div>
+    </div>
+  </div>
+  <div class="home-design-container">
+    <div class="home-design">
+      <h3 class="design-title">DESIGN</h3>
+    </div>
+    <div class="design-content center">
+      <p>At the heart of our app lies thoughtful design crafted for every user. We understand the
+        importance of versatility, which is why our platform is meticulously designed to cater to a diverse range of
+        needs and preferences. From sleek, intuitive interfaces to customizable templates, we prioritize user experience
+        above all
+        else. Our design seamlessly guides both seasoned journalers and newcomers through effortless
+        navigation and organization. Join us in embracing a visually captivating and user-friendly interface that
+        transforms journaling into a delightful and enriching experience for all.</p>
+    </div>
+  </div>
+  <div class="home-mission center">
+    <h3>InsightInks mission is to provide a free, versatile, and easy-to-use journaling app that caters to everyone's
+      needs.</h3>
+  </div>
+  <div class="home-pictures">
+    <h5 class="center">Enhance your entries and keep your memories. Easily upload and attach photos to your journal
+      entries, capturing
+      special moments, places, and memories visually.</h5>
+    <div class="frog-photo">
+      <img src="{% static 'images/froggy.jpg' %}" alt="frog">
+    </div>
+  </div>
+  <div class="home-tracking">
+    <h4 class="center">InsightInk features go beyond mere entries...</h4>
+    <ul>
+      <li>
+        <span class="tracking-header"> Food Input:</span> Easily input and log the foods you ate or enjoyed each day to
+        keep track of your culinary
+        experiences and preferences.
+      </li>
+      <br>
+      <li>
+        <span class="tracking-header">Mood Tracking:</span> Monitor your mood fluctuations throughout the day to gain
+        insights into emotional patterns and
+        triggers.
+      </li>
+      <br>
+      <li>
+        <span class="tracking-header">Weather Logging:</span> Document the weather conditions that influence your mood
+        and daily activities.
+      </li>
+      <br>
+      <li>
+        <span class="tracking-header">Sleep Tracker:</span> Log the hours of sleep you get each night to monitor your
+        sleep patterns and track your restful
+        nights.
+      </li>
+    </ul>
+  </div>
+</div>
 
 {% endblock %}
