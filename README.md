@@ -3,13 +3,13 @@
 InsightInk is a versatile digital journaling application designed to transform how you capture and reflect on your daily experiences. Whether you're a seasoned journaler or new to the practice, InsightInk offers intuitive features to suit your needs, making journaling accessible and enjoyable.
 
 ## Screenshots 📷
-![Home Page](/screenshots/home.png)
-![Journal Index](/screenshots/settings.png)
-![Journal Templates](/screenshots/templates.png)
-![Entry View](/screenshots/entry.png)
+![Home Page](main_app/static/images/screenshots/homepage.png)
+![Journal Index](main_app/static/images/screenshots/journal-index.png)
+![Journal Templates](main_app/static/images/screenshots/journal-template.png)
+![Entry View](main_app/static/images/screenshots/entry.png)
 
 ## Getting Started 🚀
-To start using InsightInk, visit our website: [InsightInk](place link here)
+To start using InsightInk, visit our website: [InsightInk](https://insightink-611-d900faad8907.herokuapp.com/) You can also check out planning and progress on Trello board: [InsightInkTrelloBoard](https://trello.com/b/8EPcG5YL/project-4-glenn-cocos-journal-app)
 
 ## Features 🌟
 - **Customizable Journals**: Create personalized journals for personal, travel, wellness, and more.
