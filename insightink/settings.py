@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
+from urllib.parse import urlparse
 
 from pathlib import Path
 # Add these 3 lines of code
@@ -30,7 +31,8 @@ SECRET_KEY = 'django-insecure-eg2&b!axrv0f=rleu_5=x%fwdro6l6(g_)5hz6@gw0d_ydeh@d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["insightink-3q12.onrender.com"]  # <- your exact Render hostname
+CSRF_TRUSTED_ORIGINS = ["https://insightink-3q12.onrender.com"]
 
 
 # Application definition
